@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Unity.GraphToolkit.Editor;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Search;
 
@@ -30,7 +31,9 @@ namespace Editor.Nodes
             compiler.Body.AppendLine($"    {hlslType} {outputVar} = {valA} * {valB};");
         }
     }
-
+    
+    // -- Floats -- 
+    
     [Serializable]
     [Node("Math/Float")]
     public class MultiplyFloat : MultiplyNode
@@ -57,5 +60,35 @@ namespace Editor.Nodes
     public class MultiplyFloat4 : MultiplyNode
     { 
         protected override Type workingType => typeof(Vector4);
+    }
+    
+    // -- Integers --
+    
+    [Serializable]
+    [Node("Math/Int")]
+    public class MultiplyInt : MultiplyNode
+    { 
+        protected override Type workingType => typeof(int);
+    }
+    
+    [Serializable]
+    [Node("Math/Int2")]
+    public class MultiplyInt2 : MultiplyNode
+    { 
+        protected override Type workingType => typeof(int2);
+    }
+    
+    [Serializable]
+    [Node("Math/Int3")]
+    public class MultiplyInt3 : MultiplyNode
+    { 
+        protected override Type workingType => typeof(int3);
+    }
+    
+    [Serializable]
+    [Node("Math/Int4")]
+    public class MultiplyInt4 : MultiplyNode
+    { 
+        protected override Type workingType => typeof(int4);
     }
 }

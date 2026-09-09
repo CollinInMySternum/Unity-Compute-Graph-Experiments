@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Unity.GraphToolkit.Editor;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Search;
 
@@ -30,6 +31,8 @@ namespace Editor.Nodes
             compiler.Body.AppendLine($"    {hlslType} {outputVar} = {valA} / {valB};");
         }
     }
+    
+    // -- Floats -- 
 
     [Serializable]
     [Node("Math/Float")]
@@ -57,5 +60,35 @@ namespace Editor.Nodes
     public class DivideFloat4 : DivideNode
     { 
         protected override Type workingType => typeof(Vector4);
+    }
+    
+    // -- Integers --
+    
+    [Serializable]
+    [Node("Math/Int")]
+    public class DivideInt : DivideNode
+    { 
+        protected override Type workingType => typeof(int);
+    }
+    
+    [Serializable]
+    [Node("Math/Int2")]
+    public class DivideInt2 : DivideNode
+    { 
+        protected override Type workingType => typeof(int2);
+    }
+    
+    [Serializable]
+    [Node("Math/Int3")]
+    public class DivideInt3 : DivideNode
+    { 
+        protected override Type workingType => typeof(int3);
+    }
+    
+    [Serializable]
+    [Node("Math/Int4")]
+    public class DivideInt4 : DivideNode
+    { 
+        protected override Type workingType => typeof(int4);
     }
 }

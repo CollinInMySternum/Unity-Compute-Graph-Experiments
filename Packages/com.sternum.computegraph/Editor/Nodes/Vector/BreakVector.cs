@@ -7,7 +7,7 @@ namespace Editor.Nodes.Vector
 {
     [Serializable]
     [Node("Math/Float2")]
-    public class BreakFloat2Node : ComputeNodeBase
+    public class BreakFloat2 : ComputeNodeBase
     {
         protected Type workingType = typeof(Vector2);
         
@@ -39,7 +39,7 @@ namespace Editor.Nodes.Vector
     
     [Serializable]
     [Node("Math/Float3")]
-    public class BreakFloat3Node : ComputeNodeBase
+    public class BreakFloat3 : ComputeNodeBase
     {
         protected Type workingType = typeof(Vector3);
         
@@ -73,7 +73,7 @@ namespace Editor.Nodes.Vector
     
     [Serializable]
     [Node("Math/Float4")]
-    public class BreakFloat4Node : ComputeNodeBase
+    public class BreakFloat4 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
@@ -107,7 +107,7 @@ namespace Editor.Nodes.Vector
     
     [Serializable]
     [Node("Math/Int2")]
-    public class BreakInt2Node : ComputeNodeBase
+    public class BreakInt2 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
@@ -137,7 +137,7 @@ namespace Editor.Nodes.Vector
     
     [Serializable]
     [Node("Math/Int3")]
-    public class BreakInt3Node : ComputeNodeBase
+    public class BreakInt3 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
@@ -169,7 +169,7 @@ namespace Editor.Nodes.Vector
     
     [Serializable]
     [Node("Math/Int4")]
-    public class BreakInt4Node : ComputeNodeBase
+    public class BreakInt4 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {

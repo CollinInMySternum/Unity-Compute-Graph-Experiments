@@ -1,11 +1,13 @@
 ﻿using System;
+using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace Editor.Nodes.Vector
 {
     [Serializable]
-    public class MakeFloat2Node : ComputeNodeBase
+    [Node("Math/Float2")]
+    public class MakeFloat2 : ComputeNodeBase
     {
         protected Type workingType = typeof(Vector2);
         
@@ -27,7 +29,8 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    public class MakeFloat3Node : ComputeNodeBase
+    [Node("Math/Float3")]
+    public class MakeFloat3 : ComputeNodeBase
     {
         protected Type workingType = typeof(Vector3);
         
@@ -51,7 +54,8 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    public class MakeFloat4Node : ComputeNodeBase
+    [Node("Math/Float4")]
+    public class MakeFloat4 : ComputeNodeBase
     {
         protected Type workingType = typeof(Vector4);
         
@@ -77,7 +81,8 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    public class MakeInt2Node : ComputeNodeBase
+    [Node("Math/Int2")]
+    public class MakeInt2 : ComputeNodeBase
     {
         protected Type workingType = typeof(int2);
         
@@ -99,7 +104,8 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    public class MakeInt3Node : ComputeNodeBase
+    [Node("Math/Int3")]
+    public class MakeInt3 : ComputeNodeBase
     {
         protected Type workingType = typeof(int3);
         
@@ -123,7 +129,8 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    public class MakeInt4Node : ComputeNodeBase
+    [Node("Math/Int4")]
+    public class MakeInt4 : ComputeNodeBase
     {
         protected Type workingType = typeof(int4);
         
