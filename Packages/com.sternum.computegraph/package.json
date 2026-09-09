@@ -1,11 +1,10 @@
 {
-	"name": "com.sternum.computegraph",
-	"version": "1.0.0",
-	"displayName": "Compute Graph",
-	"description": "This is an experimental package for handling custom 'shader graphs' for compute shaders",
-	"author": {
-		"name": "CollinInMySternum",
-		"email": "...",
-		"url": "https://github.com/CollinMySternum"
-	}
+  "name": "com.sternum.computegraph",
+  "version": "1.0.0",
+  "displayName": "Compute Graph",
+  "description": "This is an experimental package for handling custom 'shader graphs' for compute shaders",
+  "author": {
+    "name": "CollinInMySternum",
+    "url": "https://github.com/CollinMySternum"
+  }
 }

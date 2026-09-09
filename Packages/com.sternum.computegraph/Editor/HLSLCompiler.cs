@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using UnityEngine;
+
+namespace Editor
+{
+    public class HLSLCompiler
+    {
+        public StringBuilder Declarations = new StringBuilder();
+        public StringBuilder Body = new StringBuilder();
+
+        public HashSet<string> RegisteredUniforms = new HashSet<string>();
+        
+        private int _varCounter = 0;
+
+        public string GetUniqueVarName(string prefix = "var")
+        {
+            return $"{prefix}_{_varCounter++}";
+        }
+
+        public string GetCompiledShader()
+        {
+            return $"{Declarations}\n\n[numthreads(8,8,1)]\nvoid CSMain(uint3 id : SV_DispatchThreadID)\n{{\n{Body}\n}}";
+        }
+    }
+}
