@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Editor.Nodes;
 using Unity.GraphToolkit.Editor;
@@ -13,6 +14,9 @@ namespace Editor
     [Serializable]
     public class ComputeGraph : Graph
     {
+        [SerializeField] private string guid = Guid.NewGuid().ToString();
+        [SerializeField] private ComputeShader computeShader;
+        
         public const string AssetExtension = "cg";
 
         [MenuItem("Assets/Create/Compute Graph", false)]
@@ -39,7 +43,7 @@ namespace Editor
         {
             var compiler = new HLSLCompiler();
 
-            var outputNode = this.GetNodes().OfType<OutputNode>().FirstOrDefault();
+            var outputNode = GetNodes().OfType<OutputNode>().FirstOrDefault();
 
             if (outputNode == null)
             {
@@ -47,21 +51,36 @@ namespace Editor
                 return;
             }
 
-            foreach (var node in this.GetNodes().OfType<ComputeNodeBase>())
+            foreach (var node in GetNodes().OfType<ComputeNodeBase>())
             {
                 node.ResetCompilationState();
             }
 
             outputNode.GetOrEmitHLSL(compiler, "Result");
-
             string finalCode = compiler.GetCompiledShader();
+            
+            CreateComputeAsset(finalCode);
             
             Debug.Log($"Compilation Successful\n\n {finalCode}");
         }
 
-        public override bool IsConnectionAllowed(IPort output, IPort input)
+        public void CreateComputeAsset(string source)
         {
-            return base.IsConnectionAllowed(output, input);
+            string folderPath = "Assets/ComputeGraph/.generated";
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            string assetPath = $"{folderPath}/{guid}.compute";
+            
+            File.WriteAllText(assetPath, source);
+            AssetDatabase.ImportAsset(assetPath);
+
+            computeShader = AssetDatabase.LoadAssetAtPath<ComputeShader>(assetPath);
+            
+            AssetDatabase.SaveAssets();
         }
     }
 }

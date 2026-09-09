@@ -75,7 +75,7 @@ namespace Editor
                 {
                     string hlslType = TypeToHLSL(variable.DataType);
 
-                    compiler.Declarations.AppendLine($"{hlslType} {varName}");
+                    compiler.Declarations.AppendLine($"{hlslType} {varName};");
                 }
             }
             
