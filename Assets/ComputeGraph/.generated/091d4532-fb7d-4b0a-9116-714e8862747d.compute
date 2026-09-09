@@ -4,7 +4,9 @@ float3 VectorVariable2;
 
 void MultiplyAB(in float a, out float b)
 {
-    b = a * 2.0; return a * a;
+    b = a * 2.0;
+
+// Hello!!!
 }
 
 

@@ -1,15 +1,10 @@
 ﻿using System;
 using Unity.GraphToolkit.Editor;
 using UnityEngine;
-
-using System;
 using System.Collections.Generic;
-using Unity.GraphToolkit.Editor;
-using UnityEngine;
 
 using Editor;
 using Editor.Nodes;
-using Mono.Cecil.Cil;
 
 namespace Editor.Nodes.Custom
 {
@@ -39,7 +34,8 @@ namespace Editor.Nodes.Custom
 
             context.AddOption<string>(k_CodeBody)
                 .WithDisplayName("Code Body")
-                .WithDefaultValue("return a * b;");
+                .WithDefaultValue("return a * b;")
+                .AsTextArea(3, 512);
         }
 
         protected override void OnDefinePorts(IPortDefinitionContext context)
