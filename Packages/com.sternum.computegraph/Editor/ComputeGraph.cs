@@ -43,9 +43,9 @@ namespace Editor
         {
             var compiler = new HLSLCompiler();
 
-            var outputNode = GetNodes().OfType<OutputNode>().FirstOrDefault();
+            var writeNode = GetNodes().OfType<WriteBuffer>().FirstOrDefault();
 
-            if (outputNode == null)
+            if (writeNode == null)
             {
                 Debug.LogError("Compilation Failed: No OutputNode found on graph.");
                 return;
@@ -56,7 +56,7 @@ namespace Editor
                 node.ResetCompilationState();
             }
 
-            outputNode.GetOrEmitHLSL(compiler, "Result");
+            writeNode.GetOrEmitHLSL(compiler, "Result");
             string finalCode = compiler.GetCompiledShader();
             
             CreateComputeAsset(finalCode);

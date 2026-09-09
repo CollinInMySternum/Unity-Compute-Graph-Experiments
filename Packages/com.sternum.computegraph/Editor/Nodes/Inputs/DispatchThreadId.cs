@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Editor.Nodes.Inputs
 {
     [Serializable]
-    [Node("Inputs")]
+    [Node("Inputs", "", "Dispatch Thread ID", StylePath)]
     public class DispatchThreadId : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)

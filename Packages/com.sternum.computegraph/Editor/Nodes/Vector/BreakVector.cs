@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Editor.Nodes.Vector
 {
     [Serializable]
-    [Node("Math/Float2")]
+    [Node("Math/Float2", "", "Break Float2", StylePath)]
     public class BreakFloat2 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -36,7 +36,7 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    [Node("Math/Float3")]
+    [Node("Math/Float3", "", "Break Float3", StylePath)]
     public class BreakFloat3 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -68,7 +68,7 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    [Node("Math/Float4")]
+    [Node("Math/Float4", "", "Break Float4", StylePath)]
     public class BreakFloat4 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -102,7 +102,7 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    [Node("Math/Int2")]
+    [Node("Math/Int2", "", "Break Int2", StylePath)]
     public class BreakInt2 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -132,7 +132,7 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    [Node("Math/Int3")]
+    [Node("Math/Int3", "", "Break Int3", StylePath)]
     public class BreakInt3 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -164,7 +164,7 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    [Node("Math/Int4")]
+    [Node("Math/Int4", "", "Break Int4", StylePath)]
     public class BreakInt4 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)

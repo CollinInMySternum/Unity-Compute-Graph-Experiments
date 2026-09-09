@@ -112,3 +112,6 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+.idea/.idea.Compute Graph Tests/.idea/encodings.xml
+.idea/.idea.Compute Graph Tests/.idea/indexLayout.xml
+.idea/.idea.Compute Graph Tests/.idea/vcs.xml

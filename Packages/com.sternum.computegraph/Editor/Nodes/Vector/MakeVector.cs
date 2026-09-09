@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Editor.Nodes.Vector
 {
     [Serializable]
-    [Node("Math/Float2")]
+    [Node("Math/Float2", "", "Make Float2", StylePath)]
     public class MakeFloat2 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -27,7 +27,7 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    [Node("Math/Float3")]
+    [Node("Math/Float3", "", "Make Float3", StylePath)]
     public class MakeFloat3 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -50,7 +50,7 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    [Node("Math/Float4")]
+    [Node("Math/Float4", "", "Make Float4", StylePath)]
     public class MakeFloat4 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -75,7 +75,7 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    [Node("Math/Int2")]
+    [Node("Math/Int2", "", "Make Int2", StylePath)]
     public class MakeInt2 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -96,7 +96,7 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    [Node("Math/Int3")]
+    [Node("Math/Int3", "", "Make Int3", StylePath)]
     public class MakeInt3 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -119,7 +119,7 @@ namespace Editor.Nodes.Vector
     }
     
     [Serializable]
-    [Node("Math/Int4")]
+    [Node("Math/Int4", "", "Make Int4", StylePath)]
     public class MakeInt4 : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)

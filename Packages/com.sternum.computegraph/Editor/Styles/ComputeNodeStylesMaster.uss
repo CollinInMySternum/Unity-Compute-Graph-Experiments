@@ -1,0 +1,23 @@
+﻿.ge-node__title-icon-container {
+    padding-left: 2px;
+    padding-right: 6px;
+    overflow: hidden;
+}
+
+.ge-node .ge-port--data-type-int2 {
+    --port-color: #3b5998;
+}
+
+.ge-node .ge-port--data-type-int3 {
+    --port-color: #3b5998;
+}
+
+.ge-node .ge-port--data-type-int4 {
+    --port-color: #3b5998;
+}
+
+.ge-node .ge-node-title-part__icon {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
