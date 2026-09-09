@@ -26,7 +26,7 @@ namespace Editor.Nodes
             string valA = EvaluateInput(compiler, "A");
             string valB = EvaluateInput(compiler, "B");
 
-            string hlslType = ComputeGraphTypes.GetCSharpTypeString(workingType);
+            string hlslType = ComputeGraphTypes.GetStringFromCSType(workingType);
 
             compiler.Body.AppendLine($"    {hlslType} {outputVar} = {valA} / {valB};");
         }

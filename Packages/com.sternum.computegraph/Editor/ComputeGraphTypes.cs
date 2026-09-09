@@ -107,7 +107,23 @@ namespace Editor
             return "0";
         }
 
-        public static string GetHLSLTypeString(HLSLDataType t)
+        public static HLSLDataType GetHLSLTypeFromString(string str)
+        {
+            switch (str)
+            {
+                case "float": return HLSLDataType.Float;
+                case "float2": return HLSLDataType.Float2;
+                case "float3": return HLSLDataType.Float3;
+                case "float4": return HLSLDataType.Float4;
+                case "int": return HLSLDataType.Int;
+                case "int2": return HLSLDataType.Int2;
+                case "int3": return HLSLDataType.Int3;
+                case "int4": return HLSLDataType.Int4;
+                default: return HLSLDataType.Float;
+            }
+        }
+
+        public static string GetStringFromHLSLType(HLSLDataType t)
         {
             switch (t)
             {
@@ -124,7 +140,7 @@ namespace Editor
             }
         }
 
-        public static string GetCSharpTypeString(Type t)
+        public static string GetStringFromCSType(Type t)
         {
             if (t == typeof(float)) return "float";
             if (t == typeof(Vector2)) return "float2";

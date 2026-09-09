@@ -1,15 +1,24 @@
-RWStructuredBuffer<float4> ResultBuffer;
+RWStructuredBuffer<float> ResultBuffer;
 float3 VectorVariable2;
+
+
+void MultiplyAB(in float a, out float b)
+{
+    b = a * 2.0; return a * a;
+}
+
 
 
 [numthreads(8,8,1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-    float3 BreakFloat3_4 = VectorVariable2;
-    float2 MakeFloat2_3 = float2(BreakFloat3_4.x, BreakFloat3_4.z);
-    float2 SubtractFloat2_5 = float2(1.6300,1.0000) - float2(-1.0000,-1.0000);
-    float2 AddFloat2_2 = MakeFloat2_3 + SubtractFloat2_5;
-    float2 BreakFloat2_1 = AddFloat2_2;
-    ResultBuffer[DispatchThreadId.x] = BreakFloat2_1.x;
+    float3 BreakFloat3_5 = VectorVariable2;
+    float2 MakeFloat2_4 = float2(BreakFloat3_5.x, BreakFloat3_5.z);
+    float2 SubtractFloat2_6 = float2(1.6300,1.0000) - float2(-1.0000,-1.0000);
+    float2 AddFloat2_3 = MakeFloat2_4 + SubtractFloat2_6;
+    float2 BreakFloat2_2 = AddFloat2_3;
+    float CustomFunction_1_b;
+    MultiplyAB(BreakFloat2_2.x, CustomFunction_1_b);
+    ResultBuffer[DispatchThreadId.x] = CustomFunction_1_b;
 
 }

@@ -8,9 +8,11 @@ namespace Editor
     public class HLSLCompiler
     {
         public StringBuilder Declarations = new StringBuilder();
+        public StringBuilder Functions = new StringBuilder();
         public StringBuilder Body = new StringBuilder();
 
         public HashSet<string> RegisteredUniforms = new HashSet<string>();
+        public HashSet<string> RegisteredFunctions = new HashSet<string>();
         
         private int _varCounter = 0;
 
@@ -21,7 +23,7 @@ namespace Editor
 
         public string GetCompiledShader()
         {
-            return $"{Declarations}\n\n[numthreads(8,8,1)]\nvoid CSMain(uint3 id : SV_DispatchThreadID)\n{{\n{Body}\n}}";
+            return $"{Declarations}\n\n{Functions}\n\n[numthreads(8,8,1)]\nvoid CSMain(uint3 id : SV_DispatchThreadID)\n{{\n{Body}\n}}";
         }
     }
 }

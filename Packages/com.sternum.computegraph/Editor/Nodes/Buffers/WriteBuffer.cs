@@ -25,7 +25,7 @@ namespace Editor.Nodes
 
         protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
         {
-            compiler.Declarations.AppendLine($"RWStructuredBuffer<{ComputeGraphTypes.GetHLSLTypeString(ValueType)}> {BufferName};");
+            compiler.Declarations.AppendLine($"RWStructuredBuffer<{ComputeGraphTypes.GetStringFromHLSLType(ValueType)}> {BufferName};");
             
             string value = EvaluateInput(compiler, "Value");
             string index = EvaluateInput(compiler, "Index");

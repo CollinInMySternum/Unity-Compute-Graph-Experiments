@@ -77,7 +77,7 @@ namespace Editor.Nodes
 
                 if (!compiler.RegisteredUniforms.Contains(varName))
                 {
-                    string hlslType = ComputeGraphTypes.GetCSharpTypeString(variable.DataType);
+                    string hlslType = ComputeGraphTypes.GetStringFromCSType(variable.DataType);
 
                     compiler.Declarations.AppendLine($"{hlslType} {varName};");
 
