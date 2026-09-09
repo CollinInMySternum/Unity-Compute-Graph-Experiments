@@ -9,8 +9,6 @@ namespace Editor.Nodes.Vector
     [Node("Math/Float2")]
     public class BreakFloat2 : ComputeNodeBase
     {
-        protected Type workingType = typeof(Vector2);
-        
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
             context.AddInputPort<Vector2>("In").Build();
@@ -41,8 +39,6 @@ namespace Editor.Nodes.Vector
     [Node("Math/Float3")]
     public class BreakFloat3 : ComputeNodeBase
     {
-        protected Type workingType = typeof(Vector3);
-        
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
             context.AddInputPort<Vector3>("In").Build();

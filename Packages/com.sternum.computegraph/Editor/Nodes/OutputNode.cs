@@ -11,16 +11,18 @@ namespace Editor.Nodes
 
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort<float>("Result").Build();
+            context.AddInputPort<int>("Index").Build();
+            context.AddInputPort<float>("Value").Build();
         }
 
         protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
         {
             compiler.Declarations.AppendLine($"RWStructuredBuffer<float4> {TargetBufferName};");
             
-            string finalResult = EvaluateInput(compiler, "Result");
+            string value = EvaluateInput(compiler, "Value");
+            string index = EvaluateInput(compiler, "Index");
 
-            compiler.Body.AppendLine($"    {TargetBufferName}[id.x] = {finalResult};");
+            compiler.Body.AppendLine($"    {TargetBufferName}[{index}] = {value};");
         }
     }
 }

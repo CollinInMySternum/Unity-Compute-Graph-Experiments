@@ -9,8 +9,6 @@ namespace Editor.Nodes.Vector
     [Node("Math/Float2")]
     public class MakeFloat2 : ComputeNodeBase
     {
-        protected Type workingType = typeof(Vector2);
-        
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
             context.AddInputPort<float>("X").Build();
@@ -24,7 +22,7 @@ namespace Editor.Nodes.Vector
             string x = EvaluateInput(compiler, "X");
             string y = EvaluateInput(compiler, "Y");
                 
-            compiler.Body.AppendLine($"    float2{outputVar} = float2({x}, {y});");
+            compiler.Body.AppendLine($"    float2 {outputVar} = float2({x}, {y});");
         }
     }
     
@@ -32,8 +30,6 @@ namespace Editor.Nodes.Vector
     [Node("Math/Float3")]
     public class MakeFloat3 : ComputeNodeBase
     {
-        protected Type workingType = typeof(Vector3);
-        
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
             context.AddInputPort<float>("X").Build();
@@ -49,7 +45,7 @@ namespace Editor.Nodes.Vector
             string y = EvaluateInput(compiler, "Y");
             string z = EvaluateInput(compiler, "Z");
                 
-            compiler.Body.AppendLine($"    float3{outputVar} = float3({x}, {y}, {z});");
+            compiler.Body.AppendLine($"    float3 {outputVar} = float3({x}, {y}, {z});");
         }
     }
     
@@ -57,8 +53,6 @@ namespace Editor.Nodes.Vector
     [Node("Math/Float4")]
     public class MakeFloat4 : ComputeNodeBase
     {
-        protected Type workingType = typeof(Vector4);
-        
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
             context.AddInputPort<float>("X").Build();
@@ -76,7 +70,7 @@ namespace Editor.Nodes.Vector
             string z = EvaluateInput(compiler, "Z");
             string w = EvaluateInput(compiler, "W");
                 
-            compiler.Body.AppendLine($"    float4{outputVar} = float4({x}, {y}, {z}, {w});");
+            compiler.Body.AppendLine($"    float4 {outputVar} = float4({x}, {y}, {z}, {w});");
         }
     }
     
@@ -84,8 +78,6 @@ namespace Editor.Nodes.Vector
     [Node("Math/Int2")]
     public class MakeInt2 : ComputeNodeBase
     {
-        protected Type workingType = typeof(int2);
-        
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
             context.AddInputPort<int>("X").Build();
@@ -99,7 +91,7 @@ namespace Editor.Nodes.Vector
             string x = EvaluateInput(compiler, "X");
             string y = EvaluateInput(compiler, "Y");
                 
-            compiler.Body.AppendLine($"    int2{outputVar} = int2({x}, {y});");
+            compiler.Body.AppendLine($"    int2 {outputVar} = int2({x}, {y});");
         }
     }
     
@@ -107,8 +99,6 @@ namespace Editor.Nodes.Vector
     [Node("Math/Int3")]
     public class MakeInt3 : ComputeNodeBase
     {
-        protected Type workingType = typeof(int3);
-        
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
             context.AddInputPort<int>("X").Build();
@@ -124,7 +114,7 @@ namespace Editor.Nodes.Vector
             string y = EvaluateInput(compiler, "Y");
             string z = EvaluateInput(compiler, "Z");
                 
-            compiler.Body.AppendLine($"    int3{outputVar} = int3({x}, {y}, {z});");
+            compiler.Body.AppendLine($"    int3 {outputVar} = int3({x}, {y}, {z});");
         }
     }
     
@@ -132,8 +122,6 @@ namespace Editor.Nodes.Vector
     [Node("Math/Int4")]
     public class MakeInt4 : ComputeNodeBase
     {
-        protected Type workingType = typeof(int4);
-        
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
             context.AddInputPort<int>("X").Build();
@@ -151,7 +139,7 @@ namespace Editor.Nodes.Vector
             string z = EvaluateInput(compiler, "Z");
             string w = EvaluateInput(compiler, "W");
                 
-            compiler.Body.AppendLine($"    int4{outputVar} = int4({x}, {y}, {z}, {w});");
+            compiler.Body.AppendLine($"    int4 {outputVar} = int4({x}, {y}, {z}, {w});");
         }
     }
 }
