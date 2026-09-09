@@ -13,7 +13,7 @@ namespace Editor
 
         public HashSet<string> RegisteredUniforms = new HashSet<string>();
         public HashSet<string> RegisteredFunctions = new HashSet<string>();
-        
+
         private int _varCounter = 0;
 
         public string GetUniqueVarName(string prefix = "var")

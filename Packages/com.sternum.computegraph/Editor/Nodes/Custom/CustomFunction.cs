@@ -12,11 +12,13 @@ namespace Editor.Nodes.Custom
     [Node("Custom/HLSL Function", "", "Custom Function", StylePath)]
     public class CustomFunction : ComputeNodeBase
     {
+        // Option names for node values
         private const string k_FunctionName = "FunctionName";
         private const string k_ReturnType = "ReturnType";
         private const string k_Signature = "Signature";
         private const string k_CodeBody = "CodeBody";
         
+        // Setting up options
         protected override void OnDefineOptions(IOptionDefinitionContext context)
         {
             context.AddOption<string>(k_FunctionName)
@@ -24,7 +26,7 @@ namespace Editor.Nodes.Custom
                 .WithDefaultValue("Multiply A * B");
             
             context.AddOption<string>(k_ReturnType)
-                .WithDisplayName("Return type")
+                .WithDisplayName("Return Type")
                 .WithDefaultValue("float");
             
             context.AddOption<string>(k_Signature)

@@ -77,12 +77,14 @@ namespace Editor.Nodes
 
                 if (!compiler.RegisteredUniforms.Contains(varName))
                 {
+                    compiler.RegisteredUniforms.Add(varName);
+                    
                     string hlslType = ComputeGraphTypes.GetStringFromCSType(variable.DataType);
 
                     compiler.Declarations.AppendLine($"{hlslType} {varName};");
-
-                    return varName;
                 }
+                
+                return varName;
             }
             
             // GTF Constants/Literals

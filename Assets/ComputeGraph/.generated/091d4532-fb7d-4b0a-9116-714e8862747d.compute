@@ -15,9 +15,11 @@ void MultiplyAB(in float a, out float b)
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
     float3 BreakFloat3_5 = VectorVariable2;
-    float2 MakeFloat2_4 = float2(BreakFloat3_5.x, BreakFloat3_5.z);
-    float2 SubtractFloat2_6 = float2(1.6300,1.0000) - float2(-1.0000,-1.0000);
-    float2 AddFloat2_3 = MakeFloat2_4 + SubtractFloat2_6;
+    float3 DivideFloat3_7 = VectorVariable2 / VectorVariable2;
+    float3 BreakFloat3_6 = DivideFloat3_7;
+    float2 MakeFloat2_4 = float2(BreakFloat3_5.x, BreakFloat3_6.z);
+    float2 SubtractFloat2_8 = float2(1.6300,1.0000) - float2(-1.0000,-1.0000);
+    float2 AddFloat2_3 = MakeFloat2_4 + SubtractFloat2_8;
     float2 BreakFloat2_2 = AddFloat2_3;
     float CustomFunction_1_b;
     MultiplyAB(BreakFloat2_2.x, CustomFunction_1_b);
