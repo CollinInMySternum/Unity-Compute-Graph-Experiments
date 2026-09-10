@@ -7,8 +7,8 @@ using Editor;
 namespace Editor.Nodes
 {
     [Serializable]
-    [Node("Buffers", "", "Write Buffer", StylePath)]
-    public class WriteBuffer : ComputeNodeBase
+    [Node("Buffers", "", "Read Buffer", StylePath)]
+    public class ReadBuffer : ComputeNodeBase
     {
         [SerializeField] public string BufferName = "ResultBuffer";
         [SerializeField] public ComputeGraphTypes.HLSLDataType IndexType = ComputeGraphTypes.HLSLDataType.Int;
@@ -20,7 +20,7 @@ namespace Editor.Nodes
             var valueCSType = ComputeGraphTypes.GetCSharpType(ValueType);
             
             context.AddInputPort("Index").WithDataType(indexCSType).Build();
-            context.AddInputPort("Value").WithDataType(valueCSType).Build();
+            context.AddOutputPort("Value").WithDataType(valueCSType).Build();
         }
 
         protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
@@ -32,10 +32,10 @@ namespace Editor.Nodes
                 compiler.Declarations.AppendLine($"RWStructuredBuffer<{ComputeGraphTypes.GetStringFromHLSLType(ValueType)}> {BufferName};");
             }
             
-            string value = EvaluateInput(compiler, "Value");
             string index = EvaluateInput(compiler, "Index");
+            var valueType = ComputeGraphTypes.GetStringFromHLSLType(IndexType);
 
-            compiler.Body.AppendLine($"    {BufferName}[{index}] = {value};");
+            compiler.Body.AppendLine($"    {valueType} {outputVar} = {BufferName}[{index}];");
         }
     }
 }

@@ -1,12 +1,11 @@
 RWStructuredBuffer<float> ResultBuffer;
+int IndexVar;
 float3 VectorVariable2;
 
 
 void MultiplyAB(in float a, out float b)
 {
-    b = a * 2.0;
-
-// Hello!!!
+    b = a * a;
 }
 
 
@@ -14,10 +13,10 @@ void MultiplyAB(in float a, out float b)
 [numthreads(8,8,1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-    float3 BreakFloat3_5 = VectorVariable2;
-    float3 DivideFloat3_7 = VectorVariable2 / VectorVariable2;
-    float3 BreakFloat3_6 = DivideFloat3_7;
-    float2 MakeFloat2_4 = float2(BreakFloat3_5.x, BreakFloat3_6.z);
+    int ReadBuffer_5 = ResultBuffer[IndexVar];
+    float3 MultiplyFloat3_7 = VectorVariable2 * VectorVariable2;
+    float3 BreakFloat3_6 = MultiplyFloat3_7;
+    float2 MakeFloat2_4 = float2(ReadBuffer_5, BreakFloat3_6.z);
     float2 SubtractFloat2_8 = float2(1.6300,1.0000) - float2(-1.0000,-1.0000);
     float2 AddFloat2_3 = MakeFloat2_4 + SubtractFloat2_8;
     float2 BreakFloat2_2 = AddFloat2_3;
