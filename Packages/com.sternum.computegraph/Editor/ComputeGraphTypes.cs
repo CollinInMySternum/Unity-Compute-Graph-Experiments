@@ -113,7 +113,7 @@ namespace Editor
             {
                 var v = (bool)value;
                 
-                return value.ToString();
+                return value.ToString().ToLower();
             }
 
             return "0";

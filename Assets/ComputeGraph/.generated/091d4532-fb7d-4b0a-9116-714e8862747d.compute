@@ -24,6 +24,8 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     float2 BreakFloat2_2 = AddFloat2_3;
     float CustomFunction_1_b;
     MultiplyAB(BreakFloat2_2.x, CustomFunction_1_b);
-    ResultBuffer[DispatchThreadId.x] = CustomFunction_1_b;
+    bool BooleanAnd_11 = True && False;
+    int ConvertBoolToInt_10 = int(BooleanAnd_11);
+    ResultBuffer[ConvertBoolToInt_10] = CustomFunction_1_b;
 
 }

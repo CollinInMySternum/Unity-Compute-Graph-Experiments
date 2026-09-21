@@ -61,6 +61,7 @@ namespace Editor.Nodes
                 if (type == typeof(Vector2) && port.TryGetValue<Vector2>(out var v3)) return ComputeGraphTypes.FormatValueHLSL(v3, type);
                 if (type == typeof(Vector3) && port.TryGetValue<Vector3>(out var v4)) return ComputeGraphTypes.FormatValueHLSL(v4, type);
                 if (type == typeof(Vector4) && port.TryGetValue<Vector4>(out var v5)) return ComputeGraphTypes.FormatValueHLSL(v5, type);
+                if (type == typeof(bool) && port.TryGetValue<bool>(out var v6)) return ComputeGraphTypes.FormatValueHLSL(v6, type);
             }
             
             // Standard compute nodes
@@ -97,6 +98,7 @@ namespace Editor.Nodes
                 if (type == typeof(Vector2) && constantNode.TryGetValue<Vector2>(out var v3)) return ComputeGraphTypes.FormatValueHLSL(v3, type);
                 if (type == typeof(Vector3) && constantNode.TryGetValue<Vector3>(out var v4)) return ComputeGraphTypes.FormatValueHLSL(v4, type);
                 if (type == typeof(Vector4) && constantNode.TryGetValue<Vector4>(out var v5)) return ComputeGraphTypes.FormatValueHLSL(v5, type);
+                if (type == typeof(bool) && constantNode.TryGetValue<bool>(out var v6)) return ComputeGraphTypes.FormatValueHLSL(v6, type);
             }
 
             return fallbackValue;
