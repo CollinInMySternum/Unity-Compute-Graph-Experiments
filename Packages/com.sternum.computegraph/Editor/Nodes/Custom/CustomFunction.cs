@@ -47,7 +47,8 @@ namespace Editor.Nodes.Custom
 
             if (returnType.Trim().ToLower() != "void")
             {
-                context.AddOutputPort("Result").WithDataType(ComputeGraphTypes.GetCSharpType(ComputeGraphTypes.GetHLSLTypeFromString(returnType)));
+                context.AddOutputPort("Result").WithDataType(
+                    ComputeGraphTypes.GetCSharpType(ComputeGraphTypes.GetHLSLTypeFromString(returnType))).Build();
             }
 
             if (!string.IsNullOrWhiteSpace(signature))

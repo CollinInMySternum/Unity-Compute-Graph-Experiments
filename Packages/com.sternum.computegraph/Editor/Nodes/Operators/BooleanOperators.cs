@@ -9,10 +9,10 @@ namespace Editor.Nodes
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort("A").WithDataType<bool>();
-            context.AddInputPort("B").WithDataType<bool>();
+            context.AddInputPort<bool>("A").Build();
+            context.AddInputPort<bool>("B").Build();
 
-            context.AddOutputPort("Out").WithDataType<bool>();
+            context.AddOutputPort<bool>("Out").Build();
         }
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
@@ -30,10 +30,10 @@ namespace Editor.Nodes
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort("A").WithDataType<bool>();
-            context.AddInputPort("B").WithDataType<bool>();
+            context.AddInputPort<bool>("A").Build();
+            context.AddInputPort<bool>("B").Build();
             
-            context.AddOutputPort("Out").WithDataType<bool>();
+            context.AddOutputPort<bool>("Out").Build();
         }
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)

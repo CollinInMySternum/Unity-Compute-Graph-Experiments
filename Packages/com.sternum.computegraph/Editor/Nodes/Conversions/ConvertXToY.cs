@@ -15,8 +15,8 @@ namespace Editor.Nodes.Conversions
 
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort("X").WithDataType(workingTypeX);
-            context.AddOutputPort("y").WithDataType(workingTypeY);
+            context.AddInputPort("X").WithDataType(workingTypeX).Build();
+            context.AddOutputPort("y").WithDataType(workingTypeY).Build();
         }
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)

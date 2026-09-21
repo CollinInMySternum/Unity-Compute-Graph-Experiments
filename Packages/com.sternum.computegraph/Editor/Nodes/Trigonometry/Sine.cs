@@ -11,8 +11,8 @@ namespace Editor.Nodes.Trigonometry
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort("In").WithDataType<float>();
-            context.AddOutputPort("Out").WithDataType<float>();
+            context.AddInputPort<float>("In").Build();
+            context.AddOutputPort<float>("Out").Build();
         }
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
@@ -29,8 +29,8 @@ namespace Editor.Nodes.Trigonometry
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort("In").WithDataType<float>();
-            context.AddOutputPort("Out").WithDataType<float>();
+            context.AddInputPort<float>("In").Build();
+            context.AddOutputPort<float>("Out").Build();
         }
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
@@ -47,8 +47,8 @@ namespace Editor.Nodes.Trigonometry
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort("In").WithDataType<float>();
-            context.AddOutputPort("Out").WithDataType<float>();
+            context.AddInputPort<float>("In").Build();
+            context.AddOutputPort<float>("Out").Build();
         }
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
@@ -65,8 +65,8 @@ namespace Editor.Nodes.Trigonometry
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort("In").WithDataType<float>();
-            context.AddOutputPort("Out").WithDataType<float>();
+            context.AddInputPort<float>("In").Build();
+            context.AddOutputPort<float>("Out").Build();
         }
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
