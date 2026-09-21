@@ -1,3 +1,4 @@
+#pragma kernel CSMain
 RWStructuredBuffer<float> ResultBuffer;
 int IndexVar;
 float3 VectorVariable2;
@@ -13,12 +14,13 @@ void MultiplyAB(in float a, out float b)
 [numthreads(8,8,1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-    int ReadBuffer_5 = ResultBuffer[IndexVar];
-    float3 MultiplyFloat3_7 = VectorVariable2 * VectorVariable2;
-    float3 BreakFloat3_6 = MultiplyFloat3_7;
-    float2 MakeFloat2_4 = float2(ReadBuffer_5, BreakFloat3_6.z);
-    float2 SubtractFloat2_8 = float2(1.6300,1.0000) - float2(-1.0000,-1.0000);
-    float2 AddFloat2_3 = MakeFloat2_4 + SubtractFloat2_8;
+    int ReadBuffer_6 = ResultBuffer[IndexVar];
+    float CosineDegrees_5 = cos(ReadBuffer_6 * PI / 180.0f);
+    float3 MultiplyFloat3_8 = VectorVariable2 * VectorVariable2;
+    float3 BreakFloat3_7 = MultiplyFloat3_8;
+    float2 MakeFloat2_4 = float2(CosineDegrees_5, BreakFloat3_7.z);
+    float2 SubtractFloat2_9 = float2(1.6300,1.0000) - float2(-1.0000,-1.0000);
+    float2 AddFloat2_3 = MakeFloat2_4 + SubtractFloat2_9;
     float2 BreakFloat2_2 = AddFloat2_3;
     float CustomFunction_1_b;
     MultiplyAB(BreakFloat2_2.x, CustomFunction_1_b);
