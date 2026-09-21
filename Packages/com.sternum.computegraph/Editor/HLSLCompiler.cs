@@ -23,7 +23,7 @@ namespace Editor
 
         public string GetCompiledShader()
         {
-            return $"{Declarations}\n\n{Functions}\n\n[numthreads(8,8,1)]\nvoid CSMain(uint3 id : SV_DispatchThreadID)\n{{\n{Body}\n}}";
+            return $"#pragma kernel CSMain\n{Declarations}\n\n{Functions}\n\n[numthreads(8,8,1)]\nvoid CSMain(uint3 id : SV_DispatchThreadID)\n{{\n{Body}\n}}";
         }
     }
 }
