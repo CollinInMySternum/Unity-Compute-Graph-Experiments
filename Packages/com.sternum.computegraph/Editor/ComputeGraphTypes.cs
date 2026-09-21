@@ -13,10 +13,13 @@ namespace Editor
             Float2,
             Float3,
             Float4,
+            
             Int,
             Int2,
             Int3,
-            Int4
+            Int4,
+            
+            Bool
         }
         
         public static Type GetCSharpType(HLSLDataType dataType)
@@ -31,6 +34,7 @@ namespace Editor
                 case HLSLDataType.Int2: return typeof(int2);
                 case HLSLDataType.Int3: return typeof(int3);
                 case HLSLDataType.Int4: return typeof(int4);
+                case HLSLDataType.Bool: return typeof(bool);
                 default: return typeof(float);
             }
         }
@@ -103,6 +107,14 @@ namespace Editor
                 
                 return $"int4({x},{y},{z},{w})";
             }
+            
+            // Bool
+            if (type == typeof(bool))
+            {
+                var v = (bool)value;
+                
+                return value.ToString();
+            }
 
             return "0";
         }
@@ -119,6 +131,8 @@ namespace Editor
                 case "int2": return HLSLDataType.Int2;
                 case "int3": return HLSLDataType.Int3;
                 case "int4": return HLSLDataType.Int4;
+                case "bool": return HLSLDataType.Bool;
+                
                 default: return HLSLDataType.Float;
             }
         }
@@ -136,6 +150,9 @@ namespace Editor
                 case HLSLDataType.Int2: return "int2";
                 case HLSLDataType.Int3: return "int3";
                 case HLSLDataType.Int4: return "int4";
+                
+                case HLSLDataType.Bool: return "bool";
+                
                 default: return "float";
             }
         }
@@ -151,6 +168,8 @@ namespace Editor
             if (t == typeof(int2)) return "int2";
             if (t == typeof(int3)) return "int3";
             if (t == typeof(int4)) return "int4";
+
+            if (t == typeof(bool)) return "bool";
             if (t == typeof(Texture2D)) return "Texture2D";
 
             return "float";
