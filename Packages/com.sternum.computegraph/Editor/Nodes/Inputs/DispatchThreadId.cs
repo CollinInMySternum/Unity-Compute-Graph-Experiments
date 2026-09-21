@@ -18,7 +18,7 @@ namespace Editor.Nodes.Inputs
             context.AddOutputPort<int>("Z").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             // Doesn't emit code, since it just accesses a variable
         }

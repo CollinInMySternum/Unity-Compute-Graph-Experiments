@@ -23,7 +23,7 @@ namespace Editor.Nodes
             context.AddOutputPort("Value").WithDataType(valueCSType).Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             if (!compiler.RegisteredUniforms.Contains(BufferName))
             {

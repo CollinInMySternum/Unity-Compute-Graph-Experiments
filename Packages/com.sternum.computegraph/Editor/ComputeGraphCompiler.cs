@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Editor
 {
-    public class HLSLCompiler
+    public class ComputeGraphCompiler
     {
         public StringBuilder Declarations = new StringBuilder();
         public StringBuilder Functions = new StringBuilder();

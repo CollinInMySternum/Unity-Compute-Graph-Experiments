@@ -90,7 +90,7 @@ namespace Editor.Nodes.Custom
             return $"{baseVarName}_{outputPortName}";
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             GetNodeOptionByName(k_FunctionName).TryGetValue<string>(out var funcName);
             GetNodeOptionByName(k_CodeBody).TryGetValue<string>(out var codeBody);

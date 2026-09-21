@@ -41,7 +41,7 @@ namespace Editor
 
         public void CompileToHLSL()
         {
-            var compiler = new HLSLCompiler();
+            var compiler = new ComputeGraphCompiler();
 
             var writeNode = GetNodes().OfType<WriteBuffer>().FirstOrDefault();
 

@@ -17,7 +17,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<float>("Y").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valIn = EvaluateInput(compiler, "In", "float2(0.0, 0.0)");
                 
@@ -48,7 +48,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<float>("Z").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valIn = EvaluateInput(compiler, "In", "float3(0.0, 0.0, 0.0)");
                 
@@ -81,7 +81,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<float>("W").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valIn = EvaluateInput(compiler, "In", "float4(0.0, 0.0, 0.0, 0.0)");
                 
@@ -113,7 +113,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<int>("Y").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valIn = EvaluateInput(compiler, "In", "int2(0, 0)");
                 
@@ -144,7 +144,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<int>("Z").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valIn = EvaluateInput(compiler, "In", "int3(0, 0, 0)");
                 
@@ -177,7 +177,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<int>("W").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valIn = EvaluateInput(compiler, "In", "int4(0, 0, 0, 0)");
                 

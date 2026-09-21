@@ -15,7 +15,7 @@ namespace Editor.Nodes.Trigonometry
             context.AddOutputPort("Out").WithDataType<float>();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valX = EvaluateInput(compiler, "In");
 
@@ -33,7 +33,7 @@ namespace Editor.Nodes.Trigonometry
             context.AddOutputPort("Out").WithDataType<float>();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valX = EvaluateInput(compiler, "In");
 
@@ -51,7 +51,7 @@ namespace Editor.Nodes.Trigonometry
             context.AddOutputPort("Out").WithDataType<float>();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valX = EvaluateInput(compiler, "In");
 
@@ -69,7 +69,7 @@ namespace Editor.Nodes.Trigonometry
             context.AddOutputPort("Out").WithDataType<float>();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valX = EvaluateInput(compiler, "In");
 

@@ -19,7 +19,7 @@ namespace Editor.Nodes.Conversions
             context.AddOutputPort("y").WithDataType(workingTypeY);
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valX = EvaluateInput(compiler, "X");
             string hlslTypeY = ComputeGraphTypes.GetStringFromCSType(workingTypeY);

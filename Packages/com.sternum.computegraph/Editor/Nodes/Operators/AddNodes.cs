@@ -24,7 +24,7 @@ namespace Editor.Nodes
             context.AddOutputPort("Out").WithDataType(workingType).Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string valA = EvaluateInput(compiler, "A");
             string valB = EvaluateInput(compiler, "B");

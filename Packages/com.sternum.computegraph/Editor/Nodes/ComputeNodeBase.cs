@@ -24,7 +24,7 @@ namespace Editor.Nodes
             _cachedVarName = null;
         }
 
-        public string GetOrEmitHLSL(HLSLCompiler compiler, string outputPortName)
+        public string GetOrEmitHLSL(ComputeGraphCompiler compiler, string outputPortName)
         {
             if (string.IsNullOrEmpty(_cachedVarName))
             {
@@ -35,14 +35,14 @@ namespace Editor.Nodes
             return FormatOutputVariable(_cachedVarName, outputPortName);
         }
 
-        protected abstract void EmitHLSL(HLSLCompiler compiler, string outputVar);
+        protected abstract void EmitHLSL(ComputeGraphCompiler compiler, string outputVar);
 
         protected virtual string FormatOutputVariable(string baseVarName, string outputPortName)
         {
             return baseVarName;
         }
 
-        protected string EvaluateInput(HLSLCompiler compiler, string portName, string fallbackValue = "0.0")
+        protected string EvaluateInput(ComputeGraphCompiler compiler, string portName, string fallbackValue = "0.0")
         {
             var port = GetInputPortByName(portName);
             if (port == null) return fallbackValue;

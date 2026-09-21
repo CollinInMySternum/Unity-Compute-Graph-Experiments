@@ -17,7 +17,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<Vector2>("Out").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string x = EvaluateInput(compiler, "X");
             string y = EvaluateInput(compiler, "Y");
@@ -39,7 +39,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<Vector3>("Out").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string x = EvaluateInput(compiler, "X");
             string y = EvaluateInput(compiler, "Y");
@@ -63,7 +63,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<Vector4>("Out").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string x = EvaluateInput(compiler, "X");
             string y = EvaluateInput(compiler, "Y");
@@ -86,7 +86,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<int2>("Out").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string x = EvaluateInput(compiler, "X");
             string y = EvaluateInput(compiler, "Y");
@@ -108,7 +108,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<int3>("Out").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string x = EvaluateInput(compiler, "X");
             string y = EvaluateInput(compiler, "Y");
@@ -132,7 +132,7 @@ namespace Editor.Nodes.Vector
             context.AddOutputPort<int4>("Out").Build();
         }
 
-        protected override void EmitHLSL(HLSLCompiler compiler, string outputVar)
+        protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
             string x = EvaluateInput(compiler, "X");
             string y = EvaluateInput(compiler, "Y");
