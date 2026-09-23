@@ -1,0 +1,16 @@
+#pragma kernel CSMain
+RWStructuredBuffer<float2> Buffer;
+
+
+
+
+[numthreads(8,8,1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    float2 MakeFloat2_2 = float2(0, 0);
+    float2 Add_1 = MakeFloat2_2 + 0.0;
+    bool BooleanOr_4 = true || false;
+    int ConvertBoolToInt_3 = int(BooleanOr_4);
+    Buffer[ConvertBoolToInt_3] = Add_1;
+
+}
