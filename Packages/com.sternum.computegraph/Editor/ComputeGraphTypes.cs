@@ -41,16 +41,20 @@ namespace Editor
         
         public static string FormatValueHLSL(object value, Type type)
         {
+            // Single component
             if (type == typeof(float)) return ((float)value).ToString("G", CultureInfo.InvariantCulture);
             if (type == typeof(int)) return ((int)value).ToString("G", CultureInfo.InvariantCulture);
+            if (type == typeof(bool)) return ((bool)value).ToString().ToLower();
+            
+            // Multi-component
             
             // Floats
             if (type == typeof(Vector2))
             {
                 var v = (Vector2)value;
                 
-                string x = v.x.ToString("F4");
-                string y = v.y.ToString("F4");
+                string x = v.x.ToString("G");
+                string y = v.y.ToString("G");
                 
                 return $"float2({x},{y})";
             }
@@ -58,9 +62,9 @@ namespace Editor
             {
                 var v = (Vector3)value;
                 
-                string x = v.x.ToString("F4");
-                string y = v.y.ToString("F4");
-                string z = v.z.ToString("F4");
+                string x = v.x.ToString("G");
+                string y = v.y.ToString("G");
+                string z = v.z.ToString("G");
                 
                 return $"float3({x},{y},{z})";
             }
@@ -68,10 +72,10 @@ namespace Editor
             {
                 var v = (Vector4)value;
                 
-                string x = v.x.ToString("F4");
-                string y = v.y.ToString("F4");
-                string z = v.z.ToString("F4");
-                string w = v.z.ToString("F4");
+                string x = v.x.ToString("G");
+                string y = v.y.ToString("G");
+                string z = v.z.ToString("G");
+                string w = v.z.ToString("G");
                 
                 return $"float4({x},{y},{z},{w})";
             }
@@ -81,8 +85,8 @@ namespace Editor
             {
                 var v = (Vector2)value;
                 
-                string x = v.x.ToString("F4");
-                string y = v.y.ToString("F4");
+                string x = v.x.ToString("G");
+                string y = v.y.ToString("G");
                 
                 return $"int2({x},{y})";
             }
@@ -90,9 +94,9 @@ namespace Editor
             {
                 var v = (Vector3)value;
                 
-                string x = v.x.ToString("F4");
-                string y = v.y.ToString("F4");
-                string z = v.z.ToString("F4");
+                string x = v.x.ToString("G");
+                string y = v.y.ToString("G");
+                string z = v.z.ToString("G");
                 
                 return $"int3({x},{y},{z})";
             }
@@ -106,14 +110,6 @@ namespace Editor
                 string w = v.z.ToString("G");
                 
                 return $"int4({x},{y},{z},{w})";
-            }
-            
-            // Bool
-            if (type == typeof(bool))
-            {
-                var v = (bool)value;
-                
-                return value.ToString().ToLower();
             }
 
             return "0";
