@@ -1,5 +1,6 @@
 #pragma kernel CSMain
-RWStructuredBuffer<float2> Buffer;
+RWStructuredBuffer<float4> Buffer;
+RWStructuredBuffer<int> BufferIn;
 
 
 
@@ -7,10 +8,17 @@ RWStructuredBuffer<float2> Buffer;
 [numthreads(8,8,1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-    float2 MakeFloat2_2 = float2(0, 0);
-    float2 Add_1 = MakeFloat2_2 + 0.0;
-    bool BooleanOr_4 = true || false;
-    int ConvertBoolToInt_3 = int(BooleanOr_4);
-    Buffer[ConvertBoolToInt_3] = Add_1;
+    int ReadBuffer_2 = BufferIn[0];
+    float4 MakeFloat4_3 = float4(1, 41, 12, 0);
+    float4 Switch_1 = 
+        ReadBuffer_2 == 0 ? MakeFloat4_3 : 
+        ReadBuffer_2 == 1 ? 0.0 : 
+        ReadBuffer_2 == 2 ? 0.0 : 
+        ReadBuffer_2 == 3 ? 0.0 : 
+        ReadBuffer_2 == 4 ? 0.0 : 
+        ReadBuffer_2 == 5 ? 0.0 : 
+        ReadBuffer_2 == 6 ? MakeFloat4_3 : 
+        : MakeFloat4_3;
+    Buffer[0] = Switch_1;
 
 }
