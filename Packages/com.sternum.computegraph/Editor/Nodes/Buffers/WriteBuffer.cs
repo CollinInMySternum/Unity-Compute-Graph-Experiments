@@ -2,8 +2,6 @@
 using Unity.GraphToolkit.Editor;
 using UnityEngine;
 
-using Editor;
-
 namespace Editor.Nodes
 {
     [Serializable]

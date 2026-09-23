@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Unity.GraphToolkit.Editor;
-using Unity.Mathematics;
-using Unity.Properties;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
-using Editor;
 
 namespace Editor.Nodes
 {

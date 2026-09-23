@@ -2,8 +2,6 @@
 using Unity.GraphToolkit.Editor;
 using UnityEngine;
 
-using Editor;
-
 namespace Editor.Nodes
 {
     [Serializable]
@@ -22,6 +20,7 @@ namespace Editor.Nodes
             context.AddInputPort("Index").WithDataType(indexCSType).Build();
             context.AddOutputPort("Value").WithDataType(valueCSType).Build();
         }
+        
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {

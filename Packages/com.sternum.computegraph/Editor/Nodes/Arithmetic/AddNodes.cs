@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Search;
 
-using Editor;
 
-namespace Editor.Nodes
+namespace Editor.Nodes.Arithmetic
 {
     [Serializable]
     [Node("", "", "Add", StylePath)]

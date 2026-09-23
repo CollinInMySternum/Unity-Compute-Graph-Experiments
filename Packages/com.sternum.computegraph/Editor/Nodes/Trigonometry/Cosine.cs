@@ -1,7 +1,5 @@
 ﻿using System;
 using Unity.GraphToolkit.Editor;
-using Unity.Mathematics;
-using UnityEngine;
 
 namespace Editor.Nodes.Trigonometry
 {

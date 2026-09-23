@@ -1,10 +1,6 @@
 ﻿using System;
 using Unity.GraphToolkit.Editor;
-using UnityEngine;
 using System.Collections.Generic;
-
-using Editor;
-using Editor.Nodes;
 
 namespace Editor.Nodes.Custom
 {
