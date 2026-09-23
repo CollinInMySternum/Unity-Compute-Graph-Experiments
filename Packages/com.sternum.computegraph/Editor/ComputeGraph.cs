@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Editor;
 using Editor.Nodes;
 using Unity.GraphToolkit.Editor;
-using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
@@ -47,7 +47,7 @@ namespace Editor
 
             if (writeNode == null)
             {
-                Debug.LogError("Compilation Failed: No OutputNode found on graph.");
+                Debug.LogError("Compilation Failed: No Output Node found on graph.");
                 return;
             }
 
@@ -64,6 +64,34 @@ namespace Editor
             Debug.Log($"Compilation Successful\n\n {finalCode}");
         }
 
+        public override void OnGraphChanged(GraphLogger graphLogger)
+        {
+            EditorApplication.update -= PerformDeferredRefresh;
+            EditorApplication.update += PerformDeferredRefresh;
+
+            base.OnGraphChanged(graphLogger);
+        }
+        
+        // Hacky - forces override by spoofing user interaction
+        public void PerformDeferredRefresh()
+        {
+            EditorApplication.update -= PerformDeferredRefresh;
+            
+            if (this == null) return;
+            
+            // Submit fake transaction
+            UndoBeginRecordGraph("Resolve wildcard types");
+            
+            // Resolve types
+            foreach (var node in GetNodes().OfType<ComputeNodeWildcardBase>())
+            {
+                node.ResolveType();
+            }
+            
+            // End fake transaction
+            UndoEndRecordGraph();
+        }
+        
         public void CreateComputeAsset(string source)
         {
             string folderPath = "Assets/ComputeGraph/.generated";
