@@ -1,10 +1,10 @@
 ﻿using System;
 using Unity.GraphToolkit.Editor;
 
-namespace Editor.Nodes.Trigonometry
+namespace Editor.Nodes.Math.Trigonometry
 {
     [Serializable]
-    [Node("Trigonometry", "", "Tangent (Degrees)", StylePath)]
+    [Node("Math/Trigonometry", "", "Tangent (Degrees)", StylePath)]
     public class TangentDegrees : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -22,7 +22,7 @@ namespace Editor.Nodes.Trigonometry
     }
 
     [Serializable]
-    [Node("Trigonometry", "", "Tangent (Radians)", StylePath)]
+    [Node("Math/Trigonometry", "", "Tangent (Radians)", StylePath)]
     public class TangentRadians : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -40,7 +40,7 @@ namespace Editor.Nodes.Trigonometry
     }
     
     [Serializable]
-    [Node("Trigonometry", "", "Arctangent (Degrees)", StylePath)]
+    [Node("Math/Trigonometry", "", "Arctangent (Degrees)", StylePath)]
     public class ArcTangentDegrees : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -58,7 +58,7 @@ namespace Editor.Nodes.Trigonometry
     }
 
     [Serializable]
-    [Node("Trigonometry", "", "Arctangent (Radians)", StylePath)]
+    [Node("Math/Trigonometry", "", "Arctangent (Radians)", StylePath)]
     public class ArcTangentRadians : ComputeNodeBase
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
