@@ -3,12 +3,11 @@ using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 using UnityEngine;
 
-
-namespace Editor.Nodes.Arithmetic
+namespace Editor.Nodes.Math.Arithmetic
 {
     [Serializable]
-    [Node("Math", "", "Add", StylePath)]
-    public class AddNode : ComputeNodeWildcardBase
+    [Node("Math/Arithmetic", "", "Divide", StylePath)]
+    public class DivideNode : ComputeNodeWildcardBase
     {
         public override string[] wildcardPorts => new[] { "A", "B", "Out" };
 
@@ -27,7 +26,7 @@ namespace Editor.Nodes.Arithmetic
 
             string hlslType = ComputeGraphTypes.GetStringFromCSType(resolvedType);
 
-            compiler.Body.AppendLine($"    {hlslType} {outputVar} = {valA} + {valB};");
+            compiler.Body.AppendLine($"    {hlslType} {outputVar} = {valA} / {valB};");
         }
     }
 }

@@ -2,7 +2,7 @@
 using Unity.GraphToolkit.Editor;
 using UnityEngine;
 
-namespace Editor.Nodes
+namespace Editor.Nodes.Buffers
 {
     [Serializable]
     [Node("Buffers", "", "Read Buffer", StylePath)]

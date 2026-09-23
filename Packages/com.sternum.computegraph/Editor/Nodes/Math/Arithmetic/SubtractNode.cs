@@ -3,11 +3,11 @@ using Unity.GraphToolkit.Editor;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Editor.Nodes
+namespace Editor.Nodes.Math.Arithmetic
 {
     [Serializable]
-    [Node("Math", "", "Multiply", StylePath)]
-    public class MultiplyNode : ComputeNodeWildcardBase
+    [Node("Math/Arithmetic", "", "Subtract", StylePath)]
+    public class SubtractNode : ComputeNodeWildcardBase
     {
         public override string[] wildcardPorts => new[] { "A", "B", "Out" };
 
@@ -26,7 +26,7 @@ namespace Editor.Nodes
 
             string hlslType = ComputeGraphTypes.GetStringFromCSType(resolvedType);
 
-            compiler.Body.AppendLine($"    {hlslType} {outputVar} = {valA} * {valB};");
+            compiler.Body.AppendLine($"    {hlslType} {outputVar} = {valA} - {valB};");
         }
     }
 }
