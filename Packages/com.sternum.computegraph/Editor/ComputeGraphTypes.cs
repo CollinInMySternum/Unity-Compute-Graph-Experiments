@@ -21,7 +21,7 @@ namespace Editor
         [Serializable] public struct RWBufferFloat3 {}
         [Serializable] public struct RWBufferFloat4 {}
         [Serializable] public struct RWBufferInt {}
-        
+    
         public class ResourceMeta
         {
             public bool IsBuffer;

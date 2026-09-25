@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Editor
 {
-    [Graph(AssetExtension)]
+    [Graph(AssetExtension, options: GraphOptions.DisableAutoInclusionOfNodesFromGraphAssembly)]
     [Serializable]
     public class ComputeGraph : Graph
     {

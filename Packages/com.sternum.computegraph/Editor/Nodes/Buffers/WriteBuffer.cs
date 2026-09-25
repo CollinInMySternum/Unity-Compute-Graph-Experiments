@@ -17,10 +17,16 @@ namespace Editor.Nodes.Buffers
 
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort("RWBuffer").WithDataType(resolvedType).Build();
+            context.AddInputPort("RWBuffer")
+                .WithDataType(resolvedType)
+                .WithConnectorUI(PortConnectorUI.Arrowhead)
+                .Build();
+            
             context.AddInputPort<int>("Index").Build();
             
-            context.AddInputPort("Value").WithDataType(ComputeGraphTypes.GetPayloadType(resolvedType)).Build();
+            context.AddInputPort("Value")
+                .WithDataType(ComputeGraphTypes.GetPayloadType(resolvedType))
+                .Build();
         }
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
