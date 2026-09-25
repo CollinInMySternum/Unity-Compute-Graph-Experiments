@@ -18,7 +18,7 @@ namespace Editor.Nodes.Conversions
     [Node("Conversions", "", "Convert Float2 to Int2", StylePath)]
     public class ConvertFloat2ToInt2 : ConvertXToY
     {
-        protected override Type workingTypeX => typeof(Vector2);
+        protected override Type workingTypeX => typeof(float2);
         protected override Type workingTypeY => typeof(int2);
     }
     
@@ -26,7 +26,7 @@ namespace Editor.Nodes.Conversions
     [Node("Conversions", "", "Convert Float3 to Int3", StylePath)]
     public class ConvertFloat3ToInt3 : ConvertXToY
     {
-        protected override Type workingTypeX => typeof(Vector3);
+        protected override Type workingTypeX => typeof(float3);
         protected override Type workingTypeY => typeof(int3);
     }
     
@@ -34,7 +34,7 @@ namespace Editor.Nodes.Conversions
     [Node("Conversions", "", "Convert Float4 to Int4", StylePath)]
     public class ConvertFloat4ToInt4 : ConvertXToY
     {
-        protected override Type workingTypeX => typeof(Vector4);
+        protected override Type workingTypeX => typeof(float4);
         protected override Type workingTypeY => typeof(int4);
     }
     
@@ -52,7 +52,7 @@ namespace Editor.Nodes.Conversions
     public class ConvertInt2ToFloat2 : ConvertXToY
     {
         protected override Type workingTypeX => typeof(int2);
-        protected override Type workingTypeY => typeof(Vector2);
+        protected override Type workingTypeY => typeof(float2);
     }
     
     [Serializable]
@@ -60,7 +60,7 @@ namespace Editor.Nodes.Conversions
     public class ConvertInt3ToFloat3 : ConvertXToY
     {
         protected override Type workingTypeX => typeof(int3);
-        protected override Type workingTypeY => typeof(Vector3);
+        protected override Type workingTypeY => typeof(float3);
     }
     
     [Serializable]
@@ -68,6 +68,6 @@ namespace Editor.Nodes.Conversions
     public class ConvertInt4ToFloat4 : ConvertXToY
     {
         protected override Type workingTypeX => typeof(int4);
-        protected override Type workingTypeY => typeof(Vector4);
+        protected override Type workingTypeY => typeof(float4);
     }
 }

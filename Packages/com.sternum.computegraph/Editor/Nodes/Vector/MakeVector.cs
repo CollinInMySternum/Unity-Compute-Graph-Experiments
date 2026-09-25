@@ -14,7 +14,7 @@ namespace Editor.Nodes.Vector
             context.AddInputPort<float>("X").Build();
             context.AddInputPort<float>("Y").Build();
             
-            context.AddOutputPort<Vector2>("Out").Build();
+            context.AddOutputPort<float2>("Out").Build();
         }
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
@@ -36,7 +36,7 @@ namespace Editor.Nodes.Vector
             context.AddInputPort<float>("Y").Build();
             context.AddInputPort<float>("Z").Build();
             
-            context.AddOutputPort<Vector3>("Out").Build();
+            context.AddOutputPort<float3>("Out").Build();
         }
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
@@ -60,7 +60,7 @@ namespace Editor.Nodes.Vector
             context.AddInputPort<float>("Z").Build();
             context.AddInputPort<float>("W").Build();
             
-            context.AddOutputPort<Vector4>("Out").Build();
+            context.AddOutputPort<float4>("Out").Build();
         }
 
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)

@@ -92,7 +92,13 @@ namespace Editor
             // End fake transaction
             UndoEndRecordGraph();
         }
-        
+
+        public override bool IsConnectionAllowed(IPort output, IPort input)
+        {
+            return !(output.DataType == typeof(Untyped) && input.DataType == typeof(Untyped)) &&
+                   !(output.DataType == typeof(Untyped) && input.DataType != typeof(Untyped));
+        }
+
         public void CreateComputeAsset(string source)
         {
             string folderPath = "Assets/ComputeGraph/.generated";

@@ -6,47 +6,32 @@ namespace Editor.Nodes.Buffers
 {
     [Serializable]
     [Node("Buffers", "", "Read Buffer", StylePath)]
-    public class ReadBuffer : ComputeNodeBase
+    public class ReadBuffer : ComputeNodeWildcardBase
     {
-        private const string k_BufferName = "BufferName";
-        private const string k_ValueType = "ValueType";
+        public override string[] wildcardPorts => new[] { "Buffer" };
 
-        protected override void OnDefineOptions(IOptionDefinitionContext context)
+        public override bool IsValidWildcardType(Type type)
         {
-            context.AddOption<string>(k_BufferName)
-                .WithDisplayName("Buffer Name")
-                .WithDefaultValue("Buffer");
-
-            context.AddOption<ComputeGraphTypes.HLSLDataType>(k_ValueType)
-                .WithDisplayName("Value Type")
-                .WithDefaultValue(ComputeGraphTypes.HLSLDataType.Float);
+            return ComputeGraphTypes.IsBuffer(type);
         }
 
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            GetNodeOptionByName(k_ValueType).TryGetValue<ComputeGraphTypes.HLSLDataType>(out var valueHLSLType);
-            var valueCSType = ComputeGraphTypes.GetCSharpType(valueHLSLType);
-            
+            context.AddInputPort("Buffer").WithDataType(resolvedType).Build();
             context.AddInputPort<int>("Index").Build();
-            context.AddOutputPort("Value").WithDataType(valueCSType).Build();
+
+            context.AddOutputPort("Out").WithDataType(ComputeGraphTypes.GetPayloadType(resolvedType)).Build();
         }
         
         protected override void EmitHLSL(ComputeGraphCompiler compiler, string outputVar)
         {
-            GetNodeOptionByName(k_BufferName).TryGetValue<string>(out var bufferName);
-            GetNodeOptionByName(k_ValueType).TryGetValue<ComputeGraphTypes.HLSLDataType>(out var valueHLSLType);
-            
-            if (!compiler.RegisteredUniforms.Contains(bufferName))
-            {
-                compiler.RegisteredUniforms.Add(bufferName);
-                
-                compiler.Declarations.AppendLine($"RWStructuredBuffer<{ComputeGraphTypes.GetStringFromHLSLType(valueHLSLType)}> {bufferName};");
-            }
-            
-            string index = EvaluateInput(compiler, "Index");
-            var valueType = ComputeGraphTypes.GetStringFromHLSLType(valueHLSLType);
+            string bufferName = EvaluateInput(compiler, "Buffer");
+            string index = EvaluateInput(compiler, "Index", "0");
 
-            compiler.Body.AppendLine($"    {valueType} {outputVar} = {bufferName}[{index}];");
+            Type payloadType = ComputeGraphTypes.GetPayloadType(resolvedType);
+            var hlslType = ComputeGraphTypes.GetStringFromCSType(payloadType);
+
+            compiler.Body.AppendLine($"    {hlslType} {outputVar} = {bufferName}[{index}];");
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -7,167 +9,105 @@ namespace Editor
 {
     public static class ComputeGraphTypes
     {
-        public enum HLSLDataType
+        // Dummy types for Blackboard's UI
+        [Serializable] public struct BufferFloat {}
+        [Serializable] public struct BufferFloat2 {}
+        [Serializable] public struct BufferFloat3 {}
+        [Serializable] public struct BufferFloat4 {}
+        [Serializable] public struct BufferInt {}
+
+        [Serializable] public struct RWBufferFloat {}
+        [Serializable] public struct RWBufferFloat2 {}
+        [Serializable] public struct RWBufferFloat3 {}
+        [Serializable] public struct RWBufferFloat4 {}
+        [Serializable] public struct RWBufferInt {}
+        
+        public class ResourceMeta
         {
-            Float,
-            Float2,
-            Float3,
-            Float4,
-            
-            Int,
-            Int2,
-            Int3,
-            Int4,
-            
-            Bool
+            public bool IsBuffer;
+            public bool IsTexture;
+            public bool IsReadWrite;
+            public Type PayloadType;
+            public string DeclarationTemplate;
         }
         
-        public static Type GetCSharpType(HLSLDataType dataType)
+        public static readonly Dictionary<Type, ResourceMeta> Resources = new Dictionary<Type, ResourceMeta>
         {
-            switch (dataType)
+            // Textures
+            { typeof(Texture2D), new ResourceMeta { IsTexture = true, IsReadWrite = false, PayloadType = typeof(float4), DeclarationTemplate = "Texture2D<{0}> {1};\nSamplerState sampler_{1};" } },
+            { typeof(RenderTexture), new ResourceMeta { IsTexture = true, IsReadWrite = true, PayloadType = typeof(float4), DeclarationTemplate = "RWTexture2D<{0}> {1};" } },
+            { typeof(Texture3D), new ResourceMeta { IsTexture = true, IsReadWrite = false, PayloadType = typeof(float4), DeclarationTemplate = "Texture3D<{0}> {1};\nSamplerState sampler_{1};" } },
+            
+            // Readonly Buffers
+            { typeof(BufferFloat), new ResourceMeta { IsBuffer = true, IsReadWrite = false, PayloadType = typeof(float), DeclarationTemplate = "StructuredBuffer<{0}> {1};" } },
+            { typeof(BufferFloat2), new ResourceMeta { IsBuffer = true, IsReadWrite = false, PayloadType = typeof(float2), DeclarationTemplate = "StructuredBuffer<{0}> {1};" } },
+            { typeof(BufferFloat3), new ResourceMeta { IsBuffer = true, IsReadWrite = false, PayloadType = typeof(float3), DeclarationTemplate = "StructuredBuffer<{0}> {1};" } },
+            { typeof(BufferFloat4), new ResourceMeta { IsBuffer = true, IsReadWrite = false, PayloadType = typeof(float4), DeclarationTemplate = "StructuredBuffer<{0}> {1};" } },
+
+            // Read/Write Buffers
+            { typeof(RWBufferFloat), new ResourceMeta { IsBuffer = true, IsReadWrite = true, PayloadType = typeof(float), DeclarationTemplate = "RWStructuredBuffer<{0}> {1};" } },
+            { typeof(RWBufferFloat2), new ResourceMeta { IsBuffer = true, IsReadWrite = true, PayloadType = typeof(float2), DeclarationTemplate = "RWStructuredBuffer<{0}> {1};" } },
+            { typeof(RWBufferFloat3), new ResourceMeta { IsBuffer = true, IsReadWrite = true, PayloadType = typeof(float3), DeclarationTemplate = "RWStructuredBuffer<{0}> {1};" } },
+            { typeof(RWBufferFloat4), new ResourceMeta { IsBuffer = true, IsReadWrite = true, PayloadType = typeof(float4), DeclarationTemplate = "RWStructuredBuffer<{0}> {1};" } },
+        };
+        
+        public static bool IsBuffer(Type t) => Resources.TryGetValue(t, out var meta) && meta.IsBuffer;
+        public static bool IsTexture(Type t) => Resources.TryGetValue(t, out var meta) && meta.IsTexture;
+        public static bool IsReadWrite(Type t) => Resources.TryGetValue(t, out var meta) && meta.IsReadWrite;
+        public static Type GetPayloadType(Type t) => Resources.TryGetValue(t, out var meta) ? meta.PayloadType : t;
+        
+        // Name sanitization
+        private static readonly Regex SafeNameRegex = new Regex(@"[^a-zA-Z0-9_]", RegexOptions.Compiled);
+
+        public static string GetSafeHLSLName(string rawName)
+        {
+            if (string.IsNullOrEmpty(rawName)) return "_Var";
+            string safeName = SafeNameRegex.Replace(rawName, "_");
+            return char.IsDigit(safeName[0]) ? "_" + safeName : safeName;
+        }
+
+        public static string GetHLSLDeclarationFromCSType(Type t, string safeName)
+        {
+            if (Resources.TryGetValue(t, out var meta))
             {
-                case HLSLDataType.Float: return typeof(float);
-                case HLSLDataType.Float2: return typeof(Vector2);
-                case HLSLDataType.Float3: return typeof(Vector3);
-                case HLSLDataType.Float4: return typeof(Vector4);
-                case HLSLDataType.Int: return typeof(int);
-                case HLSLDataType.Int2: return typeof(int2);
-                case HLSLDataType.Int3: return typeof(int3);
-                case HLSLDataType.Int4: return typeof(int4);
-                case HLSLDataType.Bool: return typeof(bool);
-                default: return typeof(float);
+                string payloadStr = GetStringFromCSType(meta.PayloadType);
+                return string.Format(meta.DeclarationTemplate, payloadStr, safeName);
             }
+            return $"{GetStringFromCSType(t)} {safeName};";
         }
         
         public static string FormatValueHLSL(object value, Type type)
         {
-            // Single component
-            if (type == typeof(float)) return ((float)value).ToString("G", CultureInfo.InvariantCulture);
-            if (type == typeof(int)) return ((int)value).ToString("G", CultureInfo.InvariantCulture);
-            if (type == typeof(bool)) return ((bool)value).ToString().ToLower();
+            // Fallback value
+            if (value == null) return "0";
             
-            // Multi-component
-            
-            // Floats
-            if (type == typeof(Vector2))
+            // Value type switch
+            return value switch
             {
-                var v = (Vector2)value;
-                
-                string x = v.x.ToString("G");
-                string y = v.y.ToString("G");
-                
-                return $"float2({x},{y})";
-            }
-            if (type == typeof(Vector3))
-            {
-                var v = (Vector3)value;
-                
-                string x = v.x.ToString("G");
-                string y = v.y.ToString("G");
-                string z = v.z.ToString("G");
-                
-                return $"float3({x},{y},{z})";
-            }
-            if (type == typeof(Vector4))
-            {
-                var v = (Vector4)value;
-                
-                string x = v.x.ToString("G");
-                string y = v.y.ToString("G");
-                string z = v.z.ToString("G");
-                string w = v.z.ToString("G");
-                
-                return $"float4({x},{y},{z},{w})";
-            }
-            
-            // Integers
-            if (type == typeof(int2))
-            {
-                var v = (Vector2)value;
-                
-                string x = v.x.ToString("G");
-                string y = v.y.ToString("G");
-                
-                return $"int2({x},{y})";
-            }
-            if (type == typeof(int3))
-            {
-                var v = (Vector3)value;
-                
-                string x = v.x.ToString("G");
-                string y = v.y.ToString("G");
-                string z = v.z.ToString("G");
-                
-                return $"int3({x},{y},{z})";
-            }
-            if (type == typeof(int4))
-            {
-                var v = (int4)value;
-                
-                string x = v.x.ToString("G");
-                string y = v.y.ToString("G");
-                string z = v.z.ToString("G");
-                string w = v.z.ToString("G");
-                
-                return $"int4({x},{y},{z},{w})";
-            }
-
-            return "0";
-        }
-
-        public static HLSLDataType GetHLSLTypeFromString(string str)
-        {
-            switch (str)
-            {
-                case "float": return HLSLDataType.Float;
-                case "float2": return HLSLDataType.Float2;
-                case "float3": return HLSLDataType.Float3;
-                case "float4": return HLSLDataType.Float4;
-                case "int": return HLSLDataType.Int;
-                case "int2": return HLSLDataType.Int2;
-                case "int3": return HLSLDataType.Int3;
-                case "int4": return HLSLDataType.Int4;
-                case "bool": return HLSLDataType.Bool;
-                
-                default: return HLSLDataType.Float;
-            }
-        }
-
-        public static string GetStringFromHLSLType(HLSLDataType t)
-        {
-            switch (t)
-            {
-                case HLSLDataType.Float: return "float";
-                case HLSLDataType.Float2: return "float2";
-                case HLSLDataType.Float3: return "float3";
-                case HLSLDataType.Float4: return "float4";
-                
-                case HLSLDataType.Int: return "int";
-                case HLSLDataType.Int2: return "int2";
-                case HLSLDataType.Int3: return "int3";
-                case HLSLDataType.Int4: return "int4";
-                
-                case HLSLDataType.Bool: return "bool";
-                
-                default: return "float";
-            }
+                float f => f.ToString("G", CultureInfo.InvariantCulture),
+                int i => i.ToString("G", CultureInfo.InvariantCulture),
+                bool b => b.ToString().ToLower(),
+                float2 v => $"float2({v.x.ToString("G")}, {v.y.ToString("G")})",
+                float3 v => $"float3({v.x.ToString("G")}, {v.y.ToString("G")}, {v.z.ToString("G")})",
+                float4 v => $"float4({v.x.ToString("G")}, {v.y.ToString("G")}, {v.z.ToString("G")}, {v.w.ToString("G")})",
+                int2 v => $"int2({v.x.ToString("G")}, {v.y.ToString("G")})",
+                int3 v => $"int3({v.x.ToString("G")}, {v.y.ToString("G")}, {v.z.ToString("G")})",
+                int4 v => $"int4({v.x.ToString("G")}, {v.y.ToString("G")}, {v.z.ToString("G")}, {v.w.ToString("G")})",
+                _ => "0"
+            };
         }
 
         public static string GetStringFromCSType(Type t)
         {
             if (t == typeof(float)) return "float";
-            if (t == typeof(Vector2)) return "float2";
-            if (t == typeof(Vector3)) return "float3";
-            if (t == typeof(Vector4)) return "float4";
-
+            if (t == typeof(float2)) return "float2";
+            if (t == typeof(float3)) return "float3";
+            if (t == typeof(float4)) return "float4";
             if (t == typeof(int)) return "int";
             if (t == typeof(int2)) return "int2";
             if (t == typeof(int3)) return "int3";
             if (t == typeof(int4)) return "int4";
-
             if (t == typeof(bool)) return "bool";
-            if (t == typeof(Texture2D)) return "Texture2D";
-
             return "float";
         }
     }

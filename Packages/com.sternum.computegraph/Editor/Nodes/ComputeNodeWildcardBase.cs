@@ -9,12 +9,17 @@ namespace Editor.Nodes
     [Node("", "", "", StylePath)]
     public abstract class ComputeNodeWildcardBase : ComputeNodeBase
     {
-        [SerializeField] public Type resolvedType = typeof(object);
+        [SerializeField] public Type resolvedType = typeof(Untyped);
         public abstract string[] wildcardPorts { get; }
+        
+        public virtual bool IsValidWildcardType(Type type)
+        {
+            return !ComputeGraphTypes.IsBuffer(type) && !ComputeGraphTypes.IsTexture(type);
+        }
 
         public void ResolveType()
         {
-            Type newType = typeof(object);
+            Type newType = typeof(Untyped);
 
             foreach (var portName in wildcardPorts)
             {
@@ -26,7 +31,12 @@ namespace Editor.Nodes
 
                 if (connectedPorts.Count > 0)
                 {
-                    newType = connectedPorts[0].DataType;
+                    Type candidateType = connectedPorts[0].DataType;
+
+                    if (IsValidWildcardType(candidateType))
+                    {
+                        newType = candidateType;
+                    }
                 }
             }
 

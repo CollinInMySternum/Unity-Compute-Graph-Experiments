@@ -11,7 +11,7 @@ namespace Editor.Nodes.Vector
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort<Vector2>("In").Build();
+            context.AddInputPort<float2>("In").Build();
             
             context.AddOutputPort<float>("X").Build();
             context.AddOutputPort<float>("Y").Build();
@@ -41,7 +41,7 @@ namespace Editor.Nodes.Vector
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort<Vector3>("In").Build();
+            context.AddInputPort<float3>("In").Build();
             
             context.AddOutputPort<float>("X").Build();
             context.AddOutputPort<float>("Y").Build();
@@ -73,7 +73,7 @@ namespace Editor.Nodes.Vector
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
-            context.AddInputPort<Vector4>("In").Build();
+            context.AddInputPort<float4>("In").Build();
             
             context.AddOutputPort<float>("X").Build();
             context.AddOutputPort<float>("Y").Build();
